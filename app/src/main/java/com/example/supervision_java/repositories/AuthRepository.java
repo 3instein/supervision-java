@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.supervision_java.api.ApiService;
 import com.example.supervision_java.models.LoginResponse;
-import com.example.supervision_java.views.MainActivity;
+import com.example.supervision_java.views.activities.MainActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;

@@ -1,12 +1,12 @@
-package com.example.supervision_java.views;
+package com.example.supervision_java.views.activities;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.supervision_java.R;
 import com.example.supervision_java.models.LoginResponse;
 import com.example.supervision_java.viewmodels.AuthViewModel;
-import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,16 +14,10 @@ import android.view.View;
 
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 
-import com.example.supervision_java.databinding.ActivityMainBinding;
+import com.example.supervision_java.views.NavigationActivity;
 import com.google.android.material.textfield.TextInputLayout;
 
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -60,6 +54,9 @@ public class MainActivity extends AppCompatActivity {
                                 if (loginResponse.getStatus_code() == 200) {
                                     MainActivity.user = loginResponse.getUser();
                                     Toast.makeText(context, MainActivity.user.getName(), Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(MainActivity.this, NavigationActivity.class);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                    startActivity(intent);
                                 } else {
                                     Toast.makeText(context, "Cannot log in. Wrong credentials!", Toast.LENGTH_SHORT).show();
                                 }
