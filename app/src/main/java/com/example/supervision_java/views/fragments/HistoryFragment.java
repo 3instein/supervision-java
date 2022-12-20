@@ -82,7 +82,7 @@ public class HistoryFragment extends Fragment {
         transactionViewModel = new ViewModelProvider(this).get(TransactionViewModel.class);
         transactionViewModel.getAllTransactions("Bearer " + MainActivity.user.getToken());
         transactionViewModel.getAllTransactionsDetail().observe(getViewLifecycleOwner(), showAllTransactions);
-        return inflater.inflate(R.layout.fragment_history, container, false);
+        return view;
     }
 
     private Observer<List<Transaction.Transactions>> showAllTransactions = new Observer<List<Transaction.Transactions>>() {
