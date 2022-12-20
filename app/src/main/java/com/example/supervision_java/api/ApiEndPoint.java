@@ -2,6 +2,7 @@ package com.example.supervision_java.api;
 
 import com.example.supervision_java.models.LoginResponse;
 import com.example.supervision_java.models.Order;
+import com.example.supervision_java.models.Transaction;
 import com.example.supervision_java.models.ShowOrder;
 
 import retrofit2.Call;
@@ -26,6 +27,10 @@ public interface ApiEndPoint {
             @Header("Authorization") String token
     );
 
+    @GET("transactions")
+    Call<Transaction> getAllTransactions(
+            @Header("Authorization") String token
+            
     @GET("orders/{order_id}")
     Call<ShowOrder> showOrder(
             @Header("Authorization") String token,
