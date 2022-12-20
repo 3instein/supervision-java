@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.supervision_java.api.ApiService;
 import com.example.supervision_java.models.Order;
+import com.example.supervision_java.models.ShowOrder;
 import com.example.supervision_java.views.activities.MainActivity;
 import com.example.supervision_java.views.fragments.OrderFragment;
 
@@ -64,5 +65,34 @@ public class OrderRepository {
         });
 
         return allOrdersResult;
+    }
+
+    public MutableLiveData<ShowOrder> showOrder(String token, String orderId) {
+        final MutableLiveData<ShowOrder> orderResult = new MutableLiveData<>();
+
+        ApiService.endPoint().showOrder(token, orderId).enqueue(new Callback<ShowOrder>() {
+            @Override
+            public void onResponse(Call<ShowOrder> call, Response<ShowOrder> response) {
+                if (response.isSuccessful()) {
+                    orderResult.setValue(response.body());
+                } else {
+                    try {
+                        JSONObject error = new JSONObject(response.errorBody().string());
+                        Toast.makeText(OrderFragment.context, error.getString("status_message"), Toast.LENGTH_SHORT).show();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ShowOrder> call, Throwable t) {
+                t.printStackTrace();
+            }
+        });
+
+        return orderResult;
     }
 }

@@ -18,7 +18,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/transactionNote"
@@ -89,7 +89,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="24dp"
                 android:layout_marginEnd="16dp"
                 android:background="?android:attr/listDivider"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -97,7 +97,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/customerName" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView"
+                android:id="@+id/orderRV"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="16dp"
@@ -112,12 +112,12 @@
                 android:layout_width="0dp"
                 android:layout_height="1dp"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="24dp"
                 android:layout_marginEnd="16dp"
                 android:background="?android:attr/listDivider"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
+                app:layout_constraintTop_toBottomOf="@+id/orderRV" />
 
             <TextView
                 android:id="@+id/subtotalText"
@@ -134,16 +134,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Pajak Restoran 11%"
+                android:text="Diskon"
                 app:layout_constraintStart_toStartOf="@+id/subtotalText"
-                app:layout_constraintTop_toBottomOf="@+id/subtotalText" />
+                app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+            <TextView
+                android:id="@+id/discountPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                app:layout_constraintEnd_toEndOf="@+id/taxPrice"
+                app:layout_constraintTop_toTopOf="@+id/taxText" />
 
             <View
                 android:id="@+id/divider4"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="24dp"
                 android:layout_marginEnd="16dp"
                 android:background="?android:attr/listDivider"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -155,10 +163,9 @@
                 android:id="@+id/subtotalPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 android:text="Rp. 84.000"
                 app:layout_constraintEnd_toEndOf="@+id/divider3"
-                app:layout_constraintTop_toBottomOf="@+id/divider3" />
+                app:layout_constraintTop_toTopOf="@+id/subtotalText" />
 
             <TextView
                 android:id="@+id/taxPrice"
@@ -168,6 +175,15 @@
                 android:text="Rp. 9.240"
                 app:layout_constraintEnd_toEndOf="@+id/subtotalPrice"
                 app:layout_constraintTop_toBottomOf="@+id/subtotalPrice" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Pajak Restoran 11%"
+                app:layout_constraintStart_toStartOf="@+id/subtotalText"
+                app:layout_constraintTop_toBottomOf="@+id/subtotalText" />
 
             <TextView
                 android:id="@+id/totalText"
@@ -193,7 +209,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="24dp"
                 android:layout_marginEnd="24dp"
                 android:text="Konfirmasi"
                 app:layout_constraintBottom_toBottomOf="parent"
