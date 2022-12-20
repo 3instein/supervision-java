@@ -8,6 +8,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.supervision_java.models.Order;
+import com.example.supervision_java.models.ShowOrder;
 import com.example.supervision_java.repositories.OrderRepository;
 
 import java.util.List;
@@ -28,5 +29,15 @@ public class OrderViewModel extends AndroidViewModel {
 
     public LiveData<List<Order.Orders>> getAllOrdersDetail() {
         return getAllOrdersResult;
+    }
+
+    private MutableLiveData<ShowOrder> showOrderResult = new MutableLiveData<>();
+
+    public void showOrder(String token, String orderId) {
+        showOrderResult = repository.showOrder(token, orderId);
+    }
+
+    public LiveData<ShowOrder> getShowOrderDetail() {
+        return showOrderResult;
     }
 }
