@@ -6,4 +6,8 @@
         android:id="@+id/orderFragment"
         android:icon="@drawable/ic_baseline_receipt_24"
         android:title="Transaksi" />
+    <item
+        android:id="@+id/historyFragment"
+        android:icon="@android:drawable/btn_dialog"
+        android:title="History" />
 </menu>
