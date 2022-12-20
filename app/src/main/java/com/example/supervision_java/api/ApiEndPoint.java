@@ -30,7 +30,8 @@ public interface ApiEndPoint {
     @GET("transactions")
     Call<Transaction> getAllTransactions(
             @Header("Authorization") String token
-            
+    );
+
     @GET("orders/{order_id}")
     Call<ShowOrder> showOrder(
             @Header("Authorization") String token,
