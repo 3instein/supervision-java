@@ -17,7 +17,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.supervision_java.R;
 import com.example.supervision_java.adapters.ShowOrderAdapter;
@@ -47,8 +46,8 @@ public class OrderDetailActivity extends AppCompatActivity {
         intent = getIntent();
         context = getBaseContext();
         transactionNumber = findViewById(R.id.transactionNumber);
-        transactionTime = findViewById(R.id.transactionTime);
-        customerName = findViewById(R.id.customerName);
+        transactionTime = findViewById(R.id.transactionTimestamp);
+        customerName = findViewById(R.id.customerRole);
         tableNumber = findViewById(R.id.tableNumber);
         subtotalPrice = findViewById(R.id.subtotalPrice);
         taxPrice = findViewById(R.id.taxPrice);
