@@ -44,8 +44,8 @@ public class OrderViewModel extends AndroidViewModel {
 
     private MutableLiveData<ConfirmOrder> confirmOrderResult = new MutableLiveData<>();
 
-    public void confirmOrder(String token, String orderId) {
-        confirmOrderResult = repository.confirmOrder(token, orderId);
+    public void confirmOrder(String token, String orderId, String cashierId) {
+        confirmOrderResult = repository.confirmOrder(token, orderId, cashierId);
     }
 
     public LiveData<ConfirmOrder> getConfirmOrderDetail() {

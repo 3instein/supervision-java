@@ -3,6 +3,7 @@ package com.example.supervision_java.api;
 import com.example.supervision_java.models.ConfirmOrder;
 import com.example.supervision_java.models.LoginResponse;
 import com.example.supervision_java.models.Order;
+import com.example.supervision_java.models.ShowTransaction;
 import com.example.supervision_java.models.Transaction;
 import com.example.supervision_java.models.ShowOrder;
 
@@ -34,14 +35,21 @@ public interface ApiEndPoint {
             @Path(value = "order_id", encoded = true) String orderId
     );
 
-    @GET("orders/{order_id}/confirm")
+    @GET("orders/{order_id}/{cashier_id}/confirm")
     Call<ConfirmOrder> confirmOrder(
             @Header("Authorization") String token,
-            @Path(value = "order_id") String orderId
+            @Path(value = "order_id") String orderId,
+            @Path(value = "cashier_id") String cashierId
     );
 
     @GET("transactions")
     Call<Transaction> getAllTransactions(
             @Header("Authorization") String token
+    );
+
+    @GET("transactions/{transaction_id}")
+    Call<ShowTransaction> showTransaction(
+            @Header("Authorization") String token,
+            @Path(value = "transaction_id", encoded = true) String transactionId
     );
 }

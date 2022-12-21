@@ -3,8 +3,6 @@ package com.example.supervision_java.views.activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -17,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.supervision_java.R;
 import com.example.supervision_java.adapters.ShowOrderAdapter;
@@ -47,7 +46,7 @@ public class OrderDetailActivity extends AppCompatActivity {
         context = getBaseContext();
         transactionNumber = findViewById(R.id.transactionNumber);
         transactionTime = findViewById(R.id.transactionTimestamp);
-        customerName = findViewById(R.id.customerRole);
+        customerName = findViewById(R.id.customerName);
         tableNumber = findViewById(R.id.tableNumber);
         subtotalPrice = findViewById(R.id.subtotalPrice);
         taxPrice = findViewById(R.id.taxPrice);
@@ -62,7 +61,7 @@ public class OrderDetailActivity extends AppCompatActivity {
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                orderViewModel.confirmOrder("Bearer " + MainActivity.user.getToken(), intent.getExtras().get("order_id").toString());
+                orderViewModel.confirmOrder("Bearer " + MainActivity.user.getToken(), intent.getExtras().get("order_id").toString(), Integer.toString(MainActivity.user.getId()));
                 orderViewModel.getConfirmOrderDetail().observe(OrderDetailActivity.this, confirmOrder);
             }
         });
