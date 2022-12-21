@@ -3,6 +3,8 @@ package com.example.supervision_java.views.activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -12,6 +14,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,17 +22,19 @@ import android.widget.Toast;
 import com.example.supervision_java.R;
 import com.example.supervision_java.adapters.ShowOrderAdapter;
 import com.example.supervision_java.helpers.Utils;
+import com.example.supervision_java.models.ConfirmOrder;
 import com.example.supervision_java.models.ShowOrder;
 import com.example.supervision_java.viewmodels.OrderViewModel;
+import com.example.supervision_java.views.NavigationActivity;
 
 public class OrderDetailActivity extends AppCompatActivity {
 
     private ActionBar actionBar;
-    private String orderId;
     private TextView transactionNumber, transactionTime, customerName, tableNumber, subtotalPrice, taxPrice, discountPrice, totalPrice;
     private RecyclerView orderRV;
     private Button confirmButton;
     private OrderViewModel orderViewModel;
+    private Intent intent;
     public static Context context;
 
     @Override
@@ -39,7 +44,7 @@ public class OrderDetailActivity extends AppCompatActivity {
         actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        Intent intent = getIntent();
+        intent = getIntent();
         context = getBaseContext();
         transactionNumber = findViewById(R.id.transactionNumber);
         transactionTime = findViewById(R.id.transactionTime);
@@ -53,7 +58,15 @@ public class OrderDetailActivity extends AppCompatActivity {
         confirmButton = findViewById(R.id.confirmButton);
         orderViewModel = new ViewModelProvider(this).get(OrderViewModel.class);
         orderViewModel.showOrder("Bearer " + MainActivity.user.getToken(), intent.getExtras().get("order_id").toString());
-        orderViewModel.getShowOrderDetail().observe(this, showOrder);
+        orderViewModel.getShowOrderDetail().observe(OrderDetailActivity.this, showOrder);
+
+        confirmButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                orderViewModel.confirmOrder("Bearer " + MainActivity.user.getToken(), intent.getExtras().get("order_id").toString());
+                orderViewModel.getConfirmOrderDetail().observe(OrderDetailActivity.this, confirmOrder);
+            }
+        });
     }
 
     private Observer<ShowOrder> showOrder = new Observer<ShowOrder>() {
@@ -71,6 +84,18 @@ public class OrderDetailActivity extends AppCompatActivity {
             ShowOrderAdapter adapter = new ShowOrderAdapter(context);
             adapter.setMenusList(showOrder.getOrder().getMenus());
             orderRV.setAdapter(adapter);
+        }
+    };
+
+    private Observer<ConfirmOrder> confirmOrder = new Observer<ConfirmOrder>() {
+        @Override
+        public void onChanged(ConfirmOrder confirmOrder) {
+            if (confirmOrder.getStatus_code() == 200) {
+                Toast.makeText(OrderDetailActivity.this, "Confirmed order id: " + intent.getExtras().get("order_id").toString(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(OrderDetailActivity.this, NavigationActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+            }
         }
     };
 

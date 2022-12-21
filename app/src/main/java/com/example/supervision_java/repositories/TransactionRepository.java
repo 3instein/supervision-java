@@ -22,9 +22,10 @@ import retrofit2.Response;
 public class TransactionRepository {
     private static TransactionRepository repository;
 
-    private TransactionRepository(){}
+    private TransactionRepository() {
+    }
 
-    public static TransactionRepository getInstance(){
+    public static TransactionRepository getInstance() {
         if (repository == null) {
             repository = new TransactionRepository();
         }

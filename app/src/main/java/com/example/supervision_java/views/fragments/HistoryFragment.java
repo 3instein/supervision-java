@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.supervision_java.R;
+import com.example.supervision_java.adapters.OrderAdapter;
 import com.example.supervision_java.adapters.TransactionAdapter;
 import com.example.supervision_java.models.Transaction;
 import com.example.supervision_java.viewmodels.TransactionViewModel;
@@ -21,15 +22,7 @@ import com.example.supervision_java.views.activities.MainActivity;
 
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link HistoryFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class HistoryFragment extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -45,15 +38,6 @@ public class HistoryFragment extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment HistoryFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static HistoryFragment newInstance(String param1, String param2) {
         HistoryFragment fragment = new HistoryFragment();
         Bundle args = new Bundle();
@@ -73,9 +57,7 @@ public class HistoryFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_history, container, false);
         context = getActivity().getApplicationContext();
         transactionFragmentRV = view.findViewById(R.id.historyFragmentRV);
@@ -92,6 +74,15 @@ public class HistoryFragment extends Fragment {
             TransactionAdapter adapter = new TransactionAdapter(context);
             adapter.setTransactionsList(transactions);
             transactionFragmentRV.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
         }
     };
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        if (TransactionAdapter.transactionsList != null) {
+            TransactionAdapter.transactionsList.clear();
+        }
+    }
 }
