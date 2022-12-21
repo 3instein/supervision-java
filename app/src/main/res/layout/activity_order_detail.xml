@@ -240,21 +240,12 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginEnd="32dp"
                 android:text="Konfirmasi"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/moreButton"
+                app:layout_constraintEnd_toStartOf="@+id/cancelButton"
                 app:layout_constraintStart_toStartOf="@+id/textView5"
                 app:layout_constraintTop_toBottomOf="@+id/textView5" />
-
-            <ImageButton
-                android:id="@+id/moreButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="@+id/confirmButton"
-                app:layout_constraintEnd_toEndOf="@+id/textView6"
-                app:layout_constraintTop_toTopOf="@+id/confirmButton"
-                app:srcCompat="@drawable/ic_baseline_more_horiz_24" />
 
             <TextView
                 android:id="@+id/textView5"
@@ -277,6 +268,15 @@
                 app:layout_constraintBottom_toBottomOf="@+id/textView5"
                 app:layout_constraintEnd_toEndOf="@+id/totalPrice"
                 app:layout_constraintTop_toTopOf="@+id/textView5" />
+
+            <Button
+                android:id="@+id/cancelButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:text="Cancel"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

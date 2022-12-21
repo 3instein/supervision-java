@@ -5,10 +5,10 @@ import android.widget.Toast;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.supervision_java.api.ApiService;
+import com.example.supervision_java.models.CancelOrder;
 import com.example.supervision_java.models.ConfirmOrder;
 import com.example.supervision_java.models.Order;
 import com.example.supervision_java.models.ShowOrder;
-import com.example.supervision_java.views.activities.MainActivity;
 import com.example.supervision_java.views.fragments.OrderFragment;
 
 import org.json.JSONException;
@@ -97,10 +97,10 @@ public class OrderRepository {
         return orderResult;
     }
 
-    public MutableLiveData<ConfirmOrder> confirmOrder(String token, String orderId, String cashierId) {
+    public MutableLiveData<ConfirmOrder> confirmOrder(String token, String orderId) {
         final MutableLiveData<ConfirmOrder> confirmOrderResult = new MutableLiveData<>();
 
-        ApiService.endPoint().confirmOrder(token, orderId, cashierId).enqueue(new Callback<ConfirmOrder>() {
+        ApiService.endPoint().confirmOrder(token, orderId).enqueue(new Callback<ConfirmOrder>() {
             @Override
             public void onResponse(Call<ConfirmOrder> call, Response<ConfirmOrder> response) {
                 if (response.isSuccessful()) {
@@ -124,5 +124,34 @@ public class OrderRepository {
         });
 
         return confirmOrderResult;
+    }
+
+    public MutableLiveData<CancelOrder> cancelOrder(String token, String orderId) {
+        final MutableLiveData<CancelOrder> cancelOrderResult = new MutableLiveData<>();
+
+        ApiService.endPoint().cancelOrder(token, orderId).enqueue(new Callback<CancelOrder>() {
+            @Override
+            public void onResponse(Call<CancelOrder> call, Response<CancelOrder> response) {
+                if (response.isSuccessful()) {
+                    cancelOrderResult.setValue(response.body());
+                } else {
+                    try {
+                        JSONObject error = new JSONObject(response.errorBody().string());
+                        Toast.makeText(OrderFragment.context, error.getString("status_message"), Toast.LENGTH_SHORT).show();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<CancelOrder> call, Throwable t) {
+                t.printStackTrace();
+            }
+        });
+
+        return cancelOrderResult;
     }
 }

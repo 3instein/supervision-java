@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.example.supervision_java.R;
 import com.example.supervision_java.adapters.ShowOrderAdapter;
 import com.example.supervision_java.helpers.Utils;
+import com.example.supervision_java.models.CancelOrder;
 import com.example.supervision_java.models.ConfirmOrder;
 import com.example.supervision_java.models.ShowOrder;
 import com.example.supervision_java.viewmodels.OrderViewModel;
@@ -30,7 +31,7 @@ public class OrderDetailActivity extends AppCompatActivity {
     private ActionBar actionBar;
     private TextView transactionNumber, transactionTime, customerName, tableNumber, subtotalPrice, taxPrice, discountPrice, totalPrice;
     private RecyclerView orderRV;
-    private Button confirmButton;
+    private Button confirmButton, cancelButton;
     private OrderViewModel orderViewModel;
     private Intent intent;
     public static Context context;
@@ -55,6 +56,7 @@ public class OrderDetailActivity extends AppCompatActivity {
         totalPrice = findViewById(R.id.totalPrice);
         orderRV = findViewById(R.id.orderRV);
         confirmButton = findViewById(R.id.confirmButton);
+        cancelButton = findViewById(R.id.cancelButton);
         orderViewModel = new ViewModelProvider(this).get(OrderViewModel.class);
         orderViewModel.showOrder("Bearer " + MainActivity.user.getToken(), intent.getExtras().get("order_id").toString());
         orderViewModel.getShowOrderDetail().observe(OrderDetailActivity.this, showOrder);
@@ -62,8 +64,16 @@ public class OrderDetailActivity extends AppCompatActivity {
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                orderViewModel.confirmOrder("Bearer " + MainActivity.user.getToken(), intent.getExtras().get("order_id").toString(), Integer.toString(MainActivity.user.getId()));
+                orderViewModel.confirmOrder("Bearer " + MainActivity.user.getToken(), intent.getExtras().get("order_id").toString());
                 orderViewModel.getConfirmOrderDetail().observe(OrderDetailActivity.this, confirmOrder);
+            }
+        });
+
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                orderViewModel.cancelOrder("Bearer " + MainActivity.user.getToken(), intent.getExtras().get("order_id").toString());
+                orderViewModel.getCancelOrderDetail().observe(OrderDetailActivity.this, cancelOrder);
             }
         });
     }
@@ -91,6 +101,18 @@ public class OrderDetailActivity extends AppCompatActivity {
         public void onChanged(ConfirmOrder confirmOrder) {
             if (confirmOrder.getStatus_code() == 200) {
                 Toast.makeText(OrderDetailActivity.this, "Confirmed order id: " + intent.getExtras().get("order_id").toString(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(OrderDetailActivity.this, NavigationActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+            }
+        }
+    };
+
+    private Observer<CancelOrder> cancelOrder = new Observer<CancelOrder>() {
+        @Override
+        public void onChanged(CancelOrder cancelOrder) {
+            if (cancelOrder.getStatus_code() == 200) {
+                Toast.makeText(OrderDetailActivity.this, "Cancelled order id: " + intent.getExtras().get("order_id").toString(), Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(OrderDetailActivity.this, NavigationActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
