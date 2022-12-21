@@ -97,10 +97,10 @@ public class OrderRepository {
         return orderResult;
     }
 
-    public MutableLiveData<ConfirmOrder> confirmOrder(String token, String orderId) {
+    public MutableLiveData<ConfirmOrder> confirmOrder(String token, String orderId, String cashierId) {
         final MutableLiveData<ConfirmOrder> confirmOrderResult = new MutableLiveData<>();
 
-        ApiService.endPoint().confirmOrder(token, orderId).enqueue(new Callback<ConfirmOrder>() {
+        ApiService.endPoint().confirmOrder(token, orderId, cashierId).enqueue(new Callback<ConfirmOrder>() {
             @Override
             public void onResponse(Call<ConfirmOrder> call, Response<ConfirmOrder> response) {
                 if (response.isSuccessful()) {

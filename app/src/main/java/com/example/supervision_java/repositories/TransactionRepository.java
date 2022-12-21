@@ -5,8 +5,10 @@ import android.widget.Toast;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.supervision_java.api.ApiService;
+import com.example.supervision_java.models.ShowTransaction;
 import com.example.supervision_java.models.Transaction;
 import com.example.supervision_java.views.fragments.HistoryFragment;
+import com.example.supervision_java.views.fragments.OrderFragment;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -63,5 +65,34 @@ public class TransactionRepository {
         });
 
         return allTransactionsResult;
+    }
+
+    public MutableLiveData<ShowTransaction> showTransaction(String token, String transactionId) {
+        final MutableLiveData<ShowTransaction> transactionResult = new MutableLiveData<>();
+
+        ApiService.endPoint().showTransaction(token, transactionId).enqueue(new Callback<ShowTransaction>() {
+            @Override
+            public void onResponse(Call<ShowTransaction> call, Response<ShowTransaction> response) {
+                if (response.isSuccessful()) {
+                    transactionResult.setValue(response.body());
+                } else {
+                    try {
+                        JSONObject error = new JSONObject(response.errorBody().string());
+                        Toast.makeText(OrderFragment.context, error.getString("status_message"), Toast.LENGTH_SHORT).show();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ShowTransaction> call, Throwable t) {
+                t.printStackTrace();
+            }
+        });
+
+        return transactionResult;
     }
 }

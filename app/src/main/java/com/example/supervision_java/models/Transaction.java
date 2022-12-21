@@ -5,7 +5,6 @@ import com.google.gson.Gson;
 import java.util.List;
 
 public class Transaction {
-
     private String message;
     private List<Transactions> transactions;
     private int status_code;
@@ -44,6 +43,7 @@ public class Transaction {
         private String table_number;
         private String customer_name;
         private int total;
+        private String status;
 
         public static Transactions objectFromData(String str) {
 
@@ -80,6 +80,14 @@ public class Transaction {
 
         public void setTotal(int total) {
             this.total = total;
+        }
+
+        public String getStatus() {
+            return status;
+        }
+
+        public void setStatus(String status) {
+            this.status = status;
         }
     }
 }
