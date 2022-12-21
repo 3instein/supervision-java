@@ -8,6 +8,6 @@
         android:title="Transaksi" />
     <item
         android:id="@+id/historyFragment"
-        android:icon="@android:drawable/btn_dialog"
-        android:title="History" />
+        android:icon="@drawable/ic_baseline_history_24"
+        android:title="Riwayat" />
 </menu>

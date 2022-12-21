@@ -56,7 +56,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, OrderHistoryActivity.class);
-                intent.putExtra("order_id", transactionResult.getTransaction_id());
+                intent.putExtra("transaction_id", transactionResult.getTransaction_id());
                 view.getContext().startActivity(intent);
             }
         });
