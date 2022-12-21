@@ -5,6 +5,7 @@ import android.widget.Toast;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.supervision_java.api.ApiService;
+import com.example.supervision_java.models.ConfirmOrder;
 import com.example.supervision_java.models.Order;
 import com.example.supervision_java.models.ShowOrder;
 import com.example.supervision_java.views.activities.MainActivity;
@@ -94,5 +95,34 @@ public class OrderRepository {
         });
 
         return orderResult;
+    }
+
+    public MutableLiveData<ConfirmOrder> confirmOrder(String token, String orderId) {
+        final MutableLiveData<ConfirmOrder> confirmOrderResult = new MutableLiveData<>();
+
+        ApiService.endPoint().confirmOrder(token, orderId).enqueue(new Callback<ConfirmOrder>() {
+            @Override
+            public void onResponse(Call<ConfirmOrder> call, Response<ConfirmOrder> response) {
+                if (response.isSuccessful()) {
+                    confirmOrderResult.setValue(response.body());
+                } else {
+                    try {
+                        JSONObject error = new JSONObject(response.errorBody().string());
+                        Toast.makeText(OrderFragment.context, error.getString("status_message"), Toast.LENGTH_SHORT).show();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ConfirmOrder> call, Throwable t) {
+                t.printStackTrace();
+            }
+        });
+
+        return confirmOrderResult;
     }
 }

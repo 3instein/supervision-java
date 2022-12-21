@@ -7,6 +7,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.supervision_java.models.ConfirmOrder;
 import com.example.supervision_java.models.Order;
 import com.example.supervision_java.models.ShowOrder;
 import com.example.supervision_java.repositories.OrderRepository;
@@ -39,5 +40,15 @@ public class OrderViewModel extends AndroidViewModel {
 
     public LiveData<ShowOrder> getShowOrderDetail() {
         return showOrderResult;
+    }
+
+    private MutableLiveData<ConfirmOrder> confirmOrderResult = new MutableLiveData<>();
+
+    public void confirmOrder(String token, String orderId) {
+        confirmOrderResult = repository.confirmOrder(token, orderId);
+    }
+
+    public LiveData<ConfirmOrder> getConfirmOrderDetail() {
+        return confirmOrderResult;
     }
 }

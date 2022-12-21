@@ -34,6 +34,7 @@ public class OrderFragment extends Fragment {
 
     private RecyclerView orderFragmentRV;
     private OrderViewModel orderViewModel;
+    private OrderAdapter adapter;
     public static Context context;
 
     public OrderFragment() {
@@ -62,6 +63,7 @@ public class OrderFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_order, container, false);
         context = getActivity().getApplicationContext();
+        adapter = new OrderAdapter(context);
         orderFragmentRV = view.findViewById(R.id.orderFragmentRV);
         orderViewModel = new ViewModelProvider(this).get(OrderViewModel.class);
         orderViewModel.getAllOrders("Bearer " + MainActivity.user.getToken());
@@ -74,9 +76,20 @@ public class OrderFragment extends Fragment {
         @Override
         public void onChanged(List<Order.Orders> orders) {
             orderFragmentRV.setLayoutManager(new LinearLayoutManager(context));
-            OrderAdapter adapter = new OrderAdapter(context);
-            adapter.setOrdersList(orders);
+            if (!orders.isEmpty()) {
+                adapter.setOrdersList(orders);
+            }
+
             orderFragmentRV.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
         }
     };
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        if (OrderAdapter.ordersList != null) {
+            OrderAdapter.ordersList.clear();
+        }
+    }
 }
