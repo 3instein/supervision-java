@@ -8,6 +8,7 @@ import com.example.supervision_java.R;
 import com.example.supervision_java.models.LoginResponse;
 import com.example.supervision_java.viewmodels.AuthViewModel;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.View;
@@ -53,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
                             try {
                                 if (loginResponse.getStatus_code() == 200) {
                                     MainActivity.user = loginResponse.getUser();
-                                    Toast.makeText(context, MainActivity.user.getName(), Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(MainActivity.this, NavigationActivity.class);
                                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                     startActivity(intent);

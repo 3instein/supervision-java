@@ -37,6 +37,7 @@ public class OrderHistoryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_order_history);
         actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setTitle("Detil Riwayat Transaksi");
 
         intent = getIntent();
         context = getBaseContext();
