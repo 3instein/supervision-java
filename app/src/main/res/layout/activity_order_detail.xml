@@ -18,15 +18,18 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/transactionNote"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="32dp"
                 android:layout_marginTop="32dp"
                 android:text="Nota Transaksi"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -36,6 +39,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="#1"
+                android:textColor="@color/black"
                 app:layout_constraintStart_toStartOf="@+id/transactionNote"
                 app:layout_constraintTop_toBottomOf="@+id/transactionNote" />
 
@@ -45,6 +49,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="10.12.2022 14:04:47"
+                android:textColor="@color/black"
                 app:layout_constraintStart_toStartOf="@+id/transactionNumber"
                 app:layout_constraintTop_toBottomOf="@+id/transactionNumber" />
 
@@ -54,6 +59,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:text="Nama Pelanggan"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/transactionTimestamp"
                 app:layout_constraintTop_toBottomOf="@+id/transactionTimestamp" />
 
@@ -63,15 +71,19 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="Guest"
+                android:textColor="@color/black"
                 app:layout_constraintStart_toStartOf="@+id/asdasd"
                 app:layout_constraintTop_toBottomOf="@+id/asdasd" />
 
             <TextView
-                android:id="@+id/tableHint"
+                android:id="@+id/a"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
+                android:layout_marginEnd="32dp"
                 android:text="Nomor Meja"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/asdasd" />
 
@@ -81,15 +93,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="1"
-                app:layout_constraintStart_toStartOf="@+id/tableHint"
-                app:layout_constraintTop_toBottomOf="@+id/tableHint" />
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="@+id/a"
+                app:layout_constraintTop_toBottomOf="@+id/a" />
 
             <View
                 android:id="@+id/divider2"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:background="?android:attr/listDivider"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -100,9 +113,9 @@
                 android:id="@+id/orderRV"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="32dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginEnd="32dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/divider2" />
@@ -112,7 +125,7 @@
                 android:layout_width="0dp"
                 android:layout_height="1dp"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:background="?android:attr/listDivider"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -126,6 +139,9 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:text="Subtotal"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/divider3"
                 app:layout_constraintTop_toBottomOf="@+id/divider3" />
 
@@ -135,6 +151,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="Diskon"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/subtotalText"
                 app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
@@ -143,6 +162,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="TextView"
+                android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="@+id/taxPrice"
                 app:layout_constraintTop_toTopOf="@+id/taxText" />
 
@@ -151,7 +171,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:background="?android:attr/listDivider"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -163,7 +183,9 @@
                 android:id="@+id/subtotalPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
                 android:text="Rp. 84.000"
+                android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="@+id/divider3"
                 app:layout_constraintTop_toTopOf="@+id/subtotalText" />
 
@@ -173,6 +195,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="Rp. 9.240"
+                android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="@+id/subtotalPrice"
                 app:layout_constraintTop_toBottomOf="@+id/subtotalPrice" />
 
@@ -182,6 +205,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="Pajak Restoran 11%"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/subtotalText"
                 app:layout_constraintTop_toBottomOf="@+id/subtotalText" />
 
@@ -192,6 +218,9 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:text="Total"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/divider4"
                 app:layout_constraintTop_toBottomOf="@+id/divider4" />
 
@@ -200,7 +229,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
                 android:text="Rp. 93.240"
+                android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="@+id/divider4"
                 app:layout_constraintTop_toBottomOf="@+id/divider4" />
 
@@ -208,21 +239,20 @@
                 android:id="@+id/confirmButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="24dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="16dp"
                 android:text="Konfirmasi"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/moreButton"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/textView5"
                 app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
             <ImageButton
                 android:id="@+id/moreButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="@+id/confirmButton"
+                app:layout_constraintEnd_toEndOf="@+id/textView6"
                 app:layout_constraintTop_toTopOf="@+id/confirmButton"
                 app:srcCompat="@drawable/ic_baseline_more_horiz_24" />
 
@@ -232,6 +262,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="Metode Pembayaran"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/totalText"
                 app:layout_constraintTop_toBottomOf="@+id/totalText" />
 
@@ -240,6 +273,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Cash"
+                android:textColor="@color/black"
                 app:layout_constraintBottom_toBottomOf="@+id/textView5"
                 app:layout_constraintEnd_toEndOf="@+id/totalPrice"
                 app:layout_constraintTop_toTopOf="@+id/textView5" />

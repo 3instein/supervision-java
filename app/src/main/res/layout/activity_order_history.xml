@@ -28,8 +28,8 @@
             <LinearLayout
                 android:id="@+id/bodyLinearAlpha"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginStart="16dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
                 android:layout_marginTop="32dp"
                 android:orientation="vertical"
                 app:layout_constraintStart_toStartOf="parent"
@@ -44,6 +44,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Nota Transaksi"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -54,7 +56,9 @@
                         android:layout_marginTop="8dp"
                         android:fontFamily="@font/poppins_medium"
                         android:text="#1"
-                        android:textColor="@android:color/black"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:textStyle="normal"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
@@ -65,7 +69,9 @@
                         android:layout_marginTop="8dp"
                         android:fontFamily="@font/poppins_medium"
                         android:text="10.12.2022 14:04:47"
-                        android:textColor="@android:color/black"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:textStyle="normal"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/transactionNumber" />
 
@@ -76,7 +82,8 @@
                         android:layout_marginTop="24dp"
                         android:fontFamily="@font/poppins_medium"
                         android:text="Nama Pelanggan"
-                        android:textColor="@android:color/black"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/transactionTimestamp" />
 
@@ -87,7 +94,9 @@
                         android:layout_marginTop="8dp"
                         android:fontFamily="@font/poppins_medium"
                         android:text="Guest"
-                        android:textColor="@android:color/black"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:textStyle="normal"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/asdasd" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -98,7 +107,7 @@
                 android:id="@+id/bodyLinearBeta"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginEnd="32dp"
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="@+id/bodyLinearAlpha"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -114,7 +123,8 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_medium"
                         android:text="Nama Kasir"
-                        android:textColor="@android:color/black"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -125,7 +135,9 @@
                         android:layout_marginTop="8dp"
                         android:fontFamily="@font/poppins_medium"
                         android:text="Marvin Solana"
-                        android:textColor="@android:color/black"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:textStyle="normal"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/cashierText" />
 
@@ -136,7 +148,8 @@
                         android:layout_marginBottom="8dp"
                         android:fontFamily="@font/poppins_medium"
                         android:text="Nomor Meja"
-                        android:textColor="@android:color/black"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
                         app:layout_constraintBottom_toTopOf="@+id/tableNumber"
                         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -146,7 +159,9 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_medium"
                         android:text="1"
-                        android:textColor="@android:color/black"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:textStyle="normal"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -169,9 +184,9 @@
                 android:id="@+id/orderDetailRecycler"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="32dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginEnd="32dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/dividerAlpha">
@@ -193,8 +208,8 @@
             <LinearLayout
                 android:id="@+id/bodyLinearCharlie"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginStart="16dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
                 android:layout_marginTop="16dp"
                 android:orientation="vertical"
                 app:layout_constraintStart_toStartOf="parent"
@@ -210,7 +225,8 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_medium"
                         android:text="Subtotal"
-                        android:textColor="@android:color/black"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -221,7 +237,8 @@
                         android:layout_marginTop="8dp"
                         android:fontFamily="@font/poppins_medium"
                         android:text="Pajak Restoran 11%"
-                        android:textColor="@android:color/black"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/subtotalText" />
 
@@ -231,6 +248,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:text="Diskon"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="@+id/taxText"
                         app:layout_constraintTop_toBottomOf="@+id/taxText" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -239,9 +258,9 @@
             <LinearLayout
                 android:id="@+id/bodyLinearDelta"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginEnd="32dp"
                 android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/dividerBeta">
@@ -256,7 +275,9 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_medium"
                         android:text="TextView"
-                        android:textColor="@android:color/black"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:textStyle="normal"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -267,7 +288,9 @@
                         android:layout_marginTop="8dp"
                         android:fontFamily="@font/poppins_medium"
                         android:text="TextView"
-                        android:textColor="@android:color/black"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:textStyle="normal"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/subtotalNumber" />
 
@@ -277,6 +300,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:text="TextView"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:textStyle="normal"
                         app:layout_constraintEnd_toEndOf="@+id/taxNumber"
                         app:layout_constraintTop_toBottomOf="@+id/taxNumber" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -298,8 +324,8 @@
             <LinearLayout
                 android:id="@+id/bodyLinearEcho"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginStart="16dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
                 android:layout_marginTop="16dp"
                 android:orientation="vertical"
                 app:layout_constraintStart_toStartOf="parent"
@@ -315,7 +341,8 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_medium"
                         android:text="Total"
-                        android:textColor="@android:color/black"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -326,7 +353,8 @@
                         android:layout_marginTop="8dp"
                         android:fontFamily="@font/poppins_medium"
                         android:text="Metode Pembayaran"
-                        android:textColor="@android:color/black"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/totalText" />
 
@@ -336,6 +364,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:text="Status Pembayaran"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/paymentMethodText" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -345,9 +375,9 @@
             <LinearLayout
                 android:id="@+id/bodyLinearF"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginEnd="32dp"
                 android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/dividerCharlie">
@@ -362,7 +392,9 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_medium"
                         android:text="TextView"
-                        android:textColor="@android:color/black"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:textStyle="normal"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -373,7 +405,9 @@
                         android:layout_marginTop="8dp"
                         android:fontFamily="@font/poppins_medium"
                         android:text="TextView"
-                        android:textColor="@android:color/black"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:textStyle="normal"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/totalNumber" />
 
@@ -383,6 +417,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:text="TextView"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:textStyle="normal"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/paymentMethod" />
                 </androidx.constraintlayout.widget.ConstraintLayout>

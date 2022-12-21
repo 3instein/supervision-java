@@ -1,5 +1,6 @@
 package com.example.supervision_java.views;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
@@ -15,11 +16,13 @@ public class NavigationActivity extends AppCompatActivity {
     public static BottomNavigationView mainBottomNavigation;
     private NavHostFragment mainFragmentContainer;
     private NavController navController;
+    public static ActionBar actionBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation);
+        actionBar = getSupportActionBar();
         mainBottomNavigation = findViewById(R.id.mainBottomNavigation);
         mainFragmentContainer = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.mainFragmentContainer);
         navController = mainFragmentContainer.getNavController();

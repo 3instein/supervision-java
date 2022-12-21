@@ -64,6 +64,7 @@ public class OrderFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_order, container, false);
         context = getActivity().getApplicationContext();
         adapter = new OrderAdapter(context);
+        NavigationActivity.actionBar.setTitle("Transaksi Berlangsung");
         orderFragmentRV = view.findViewById(R.id.orderFragmentRV);
         orderViewModel = new ViewModelProvider(this).get(OrderViewModel.class);
         orderViewModel.getAllOrders("Bearer " + MainActivity.user.getToken());

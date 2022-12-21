@@ -41,6 +41,7 @@ public class OrderDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_order_detail);
         actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setTitle("Detil Transaksi");
 
         intent = getIntent();
         context = getBaseContext();

@@ -18,6 +18,7 @@ import com.example.supervision_java.adapters.OrderAdapter;
 import com.example.supervision_java.adapters.TransactionAdapter;
 import com.example.supervision_java.models.Transaction;
 import com.example.supervision_java.viewmodels.TransactionViewModel;
+import com.example.supervision_java.views.NavigationActivity;
 import com.example.supervision_java.views.activities.MainActivity;
 
 import java.util.List;
@@ -60,6 +61,7 @@ public class HistoryFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_history, container, false);
         context = getActivity().getApplicationContext();
+        NavigationActivity.actionBar.setTitle("Riwayat Transaksi");
         transactionFragmentRV = view.findViewById(R.id.historyFragmentRV);
         transactionViewModel = new ViewModelProvider(this).get(TransactionViewModel.class);
         transactionViewModel.getAllTransactions("Bearer " + MainActivity.user.getToken());
