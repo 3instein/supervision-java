@@ -53,7 +53,6 @@ public class OrderHistoryActivity extends AppCompatActivity {
         paymentStatus = findViewById(R.id.paymentStatus);
         paymentMethod = findViewById(R.id.paymentMethod);
         orderDetailRecycler = findViewById(R.id.orderDetailRecycler);
-        cetakStrukButton = findViewById(R.id.cetakStrukButton);
         transactionViewModel = new ViewModelProvider(this).get(TransactionViewModel.class);
         transactionViewModel.showTransaction("Bearer " + MainActivity.user.getToken(), intent.getExtras().get("transaction_id").toString());
         transactionViewModel.getShowTransactionResult().observe(OrderHistoryActivity.this, showTransaction);
