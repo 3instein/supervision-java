@@ -2,6 +2,7 @@ package com.example.supervision_java.views.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -9,11 +10,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,9 +35,11 @@ public class OrderDetailActivity extends AppCompatActivity {
     private TextView transactionNumber, transactionTime, customerName, tableNumber, subtotalPrice, taxPrice, discountPrice, totalPrice;
     private RecyclerView orderRV;
     private Button confirmButton, cancelButton;
+    private ImageButton optionButton;
     private OrderViewModel orderViewModel;
     private Intent intent;
     public static Context context;
+    private String[] actions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +49,7 @@ public class OrderDetailActivity extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setTitle("Detil Transaksi");
 
+        actions = new String[]{"Tambah Menu", "Hapus Menu"};
         intent = getIntent();
         context = getBaseContext();
         transactionNumber = findViewById(R.id.transactionNumber);
@@ -57,6 +63,7 @@ public class OrderDetailActivity extends AppCompatActivity {
         orderRV = findViewById(R.id.orderRV);
         confirmButton = findViewById(R.id.confirmButton);
         cancelButton = findViewById(R.id.cancelButton);
+        optionButton = findViewById(R.id.optionButton);
         orderViewModel = new ViewModelProvider(this).get(OrderViewModel.class);
         orderViewModel.showOrder("Bearer " + MainActivity.user.getToken(), intent.getExtras().get("order_id").toString());
         orderViewModel.getShowOrderDetail().observe(OrderDetailActivity.this, showOrder);
@@ -74,6 +81,27 @@ public class OrderDetailActivity extends AppCompatActivity {
             public void onClick(View view) {
                 orderViewModel.cancelOrder("Bearer " + MainActivity.user.getToken(), intent.getExtras().get("order_id").toString());
                 orderViewModel.getCancelOrderDetail().observe(OrderDetailActivity.this, cancelOrder);
+            }
+        });
+
+        optionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(OrderDetailActivity.this);
+                builder.setItems(actions, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                switch (i) {
+                                    case 0:
+                                        Toast.makeText(OrderDetailActivity.this, "Ini maklo", Toast.LENGTH_SHORT).show();
+                                    case 1:
+                                        Toast.makeText(OrderDetailActivity.this, "Bukan maklo", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
             }
         });
     }
