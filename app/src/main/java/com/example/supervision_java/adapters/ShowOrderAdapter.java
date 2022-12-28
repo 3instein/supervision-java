@@ -44,7 +44,7 @@ public class ShowOrderAdapter extends RecyclerView.Adapter<ShowOrderAdapter.Show
         final ShowOrder.Order.Menus menusList = getMenusList().get(position);
         holder.menuQuantity.setText(Integer.toString(menusList.getQuantity()));
         holder.menuName.setText(menusList.getName());
-        holder.menuSubtotal.setText(Utils.convertToIdr(menusList.getPrice() * menusList.getQuantity()));
+        holder.menuSubtotal.setText(Utils.convertToIdr(menusList.getPrice()));
     }
 
     @Override

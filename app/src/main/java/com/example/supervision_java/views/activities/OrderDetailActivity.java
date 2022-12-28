@@ -54,7 +54,7 @@ public class OrderDetailActivity extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setTitle("Detil Transaksi");
 
-        actions = new String[]{"Ubah Menu", "Tambah Menu", "Hapus Menu"};
+        actions = new String[]{"Ubah Pesanan", "Tambah Menu", "Hapus Menu"};
         intent = getIntent();
         context = getBaseContext();
         adapter = new ShowOrderAdapter(context);
@@ -107,7 +107,9 @@ public class OrderDetailActivity extends AppCompatActivity {
                                 startActivity(intentAddMenu);
                                 break;
                             case 2:
-                                orderViewModel.updateOrder("Bearer " + MainActivity.user.getToken(), intent.getExtras().get("order_id").toString(), "remove", 2, 0);
+                                Intent intentDeleteMenu = new Intent(context, DeleteMenuActivity.class);
+                                intentDeleteMenu.putExtra("order_id", intent.getExtras().get("order_id").toString());
+                                startActivity(intentDeleteMenu);
                                 break;
                         }
                         orderViewModel.getUpdateOrderDetail().observe(OrderDetailActivity.this, updateOrder);

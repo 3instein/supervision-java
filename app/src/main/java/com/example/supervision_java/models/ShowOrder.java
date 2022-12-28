@@ -5,7 +5,6 @@ import com.google.gson.Gson;
 import java.util.List;
 
 public class ShowOrder {
-
     private String message;
     private Order order;
     private int status_code;
@@ -137,7 +136,9 @@ public class ShowOrder {
         }
 
         public static class Menus {
+            private int id;
             private String name;
+            private String image;
             private int price;
             private int quantity;
 
@@ -146,12 +147,28 @@ public class ShowOrder {
                 return new Gson().fromJson(str, Menus.class);
             }
 
+            public int getId() {
+                return id;
+            }
+
+            public void setId(int id) {
+                this.id = id;
+            }
+
             public String getName() {
                 return name;
             }
 
             public void setName(String name) {
                 this.name = name;
+            }
+
+            public String getImage() {
+                return image;
+            }
+
+            public void setImage(String image) {
+                this.image = image;
             }
 
             public int getPrice() {
