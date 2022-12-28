@@ -41,6 +41,7 @@ public class OrderDetailActivity extends AppCompatActivity {
     private Button confirmButton, cancelButton;
     private ImageButton optionButton;
     public static OrderViewModel orderViewModel;
+    public static ShowOrderAdapter adapter;
     private Intent intent;
     public static Context context;
     private String[] actions;
@@ -56,6 +57,7 @@ public class OrderDetailActivity extends AppCompatActivity {
         actions = new String[]{"Ubah Menu", "Tambah Menu", "Hapus Menu"};
         intent = getIntent();
         context = getBaseContext();
+        adapter = new ShowOrderAdapter(context);
         transactionNumber = findViewById(R.id.transactionNumber);
         transactionTime = findViewById(R.id.transactionTimestamp);
         customerName = findViewById(R.id.customerName);
@@ -130,7 +132,6 @@ public class OrderDetailActivity extends AppCompatActivity {
             taxPrice.setText(Utils.convertToIdr(showOrder.getOrder().getTax()));
             discountPrice.setText(Utils.convertToIdr(showOrder.getOrder().getDiscount()));
             totalPrice.setText(Utils.convertToIdr(showOrder.getOrder().getTotal()));
-            ShowOrderAdapter adapter = new ShowOrderAdapter(context);
             adapter.setMenusList(showOrder.getOrder().getMenus());
             orderRV.setAdapter(adapter);
         }
@@ -177,5 +178,12 @@ public class OrderDetailActivity extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        orderViewModel.showOrder("Bearer " + MainActivity.user.getToken(), intent.getExtras().get("order_id").toString());
+        orderViewModel.getShowOrderDetail().observe(OrderDetailActivity.this, showOrder);
     }
 }
