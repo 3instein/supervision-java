@@ -4,6 +4,7 @@ import com.example.supervision_java.models.CancelOrder;
 import com.example.supervision_java.models.ConfirmOrder;
 import com.example.supervision_java.models.EditOrderResponse;
 import com.example.supervision_java.models.LoginResponse;
+import com.example.supervision_java.models.Menu;
 import com.example.supervision_java.models.Order;
 import com.example.supervision_java.models.ShowTransaction;
 import com.example.supervision_java.models.Transaction;
@@ -69,5 +70,10 @@ public interface ApiEndPoint {
     Call<ShowTransaction> showTransaction(
             @Header("Authorization") String token,
             @Path(value = "transaction_id", encoded = true) String transactionId
+    );
+
+    @GET("menus")
+    Call<Menu> getAllMenus(
+            @Header("Authorization") String token
     );
 }

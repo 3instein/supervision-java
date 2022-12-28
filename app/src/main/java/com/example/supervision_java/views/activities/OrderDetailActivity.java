@@ -40,7 +40,7 @@ public class OrderDetailActivity extends AppCompatActivity {
     private RecyclerView orderRV;
     private Button confirmButton, cancelButton;
     private ImageButton optionButton;
-    private OrderViewModel orderViewModel;
+    public static OrderViewModel orderViewModel;
     private Intent intent;
     public static Context context;
     private String[] actions;
@@ -100,7 +100,9 @@ public class OrderDetailActivity extends AppCompatActivity {
                                 orderViewModel.updateOrder("Bearer " + MainActivity.user.getToken(), intent.getExtras().get("order_id").toString(), "update", 2, 5);
                                 break;
                             case 1:
-                                orderViewModel.updateOrder("Bearer " + MainActivity.user.getToken(), intent.getExtras().get("order_id").toString(), "add", 2, 1);
+                                Intent intentAddMenu = new Intent(context, AddMenuActivity.class);
+                                intentAddMenu.putExtra("order_id", intent.getExtras().get("order_id").toString());
+                                startActivity(intentAddMenu);
                                 break;
                             case 2:
                                 orderViewModel.updateOrder("Bearer " + MainActivity.user.getToken(), intent.getExtras().get("order_id").toString(), "remove", 2, 0);
