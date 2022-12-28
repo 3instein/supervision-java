@@ -2,6 +2,7 @@ package com.example.supervision_java.api;
 
 import com.example.supervision_java.models.CancelOrder;
 import com.example.supervision_java.models.ConfirmOrder;
+import com.example.supervision_java.models.EditOrderResponse;
 import com.example.supervision_java.models.LoginResponse;
 import com.example.supervision_java.models.Order;
 import com.example.supervision_java.models.ShowTransaction;
@@ -14,7 +15,9 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface ApiEndPoint {
 
@@ -34,6 +37,15 @@ public interface ApiEndPoint {
     Call<ShowOrder> showOrder(
             @Header("Authorization") String token,
             @Path(value = "order_id", encoded = true) String orderId
+    );
+
+    @PUT("orders/{order_id}")
+    Call<EditOrderResponse> updateOrder(
+            @Header("Authorization") String token,
+            @Path(value = "order_id", encoded = true) String orderId,
+            @Query("type") String type,
+            @Query("menu_id") int menuId,
+            @Query("quantity") int quantity
     );
 
     @GET("orders/{order_id}/confirm")

@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData;
 import com.example.supervision_java.api.ApiService;
 import com.example.supervision_java.models.CancelOrder;
 import com.example.supervision_java.models.ConfirmOrder;
+import com.example.supervision_java.models.EditOrderResponse;
 import com.example.supervision_java.models.Order;
 import com.example.supervision_java.models.ShowOrder;
 import com.example.supervision_java.views.fragments.OrderFragment;
@@ -95,6 +96,35 @@ public class OrderRepository {
         });
 
         return orderResult;
+    }
+
+    public MutableLiveData<EditOrderResponse> updateOrder(String token, String orderId, String type, int menuId, int quantity) {
+        final MutableLiveData<EditOrderResponse> updateOrderResult = new MutableLiveData<>();
+
+        ApiService.endPoint().updateOrder(token, orderId, type, menuId, quantity).enqueue(new Callback<EditOrderResponse>() {
+            @Override
+            public void onResponse(Call<EditOrderResponse> call, Response<EditOrderResponse> response) {
+                if (response.isSuccessful()) {
+                    updateOrderResult.setValue(response.body());
+                } else {
+                    try {
+                        JSONObject error = new JSONObject(response.errorBody().string());
+                        Toast.makeText(OrderFragment.context, error.getString("status_message"), Toast.LENGTH_SHORT).show();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<EditOrderResponse> call, Throwable t) {
+                t.printStackTrace();
+            }
+        });
+
+        return updateOrderResult;
     }
 
     public MutableLiveData<ConfirmOrder> confirmOrder(String token, String orderId) {
