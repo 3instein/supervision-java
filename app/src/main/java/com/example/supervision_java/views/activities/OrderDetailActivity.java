@@ -25,9 +25,13 @@ import com.example.supervision_java.adapters.ShowOrderAdapter;
 import com.example.supervision_java.helpers.Utils;
 import com.example.supervision_java.models.CancelOrder;
 import com.example.supervision_java.models.ConfirmOrder;
+import com.example.supervision_java.models.EditOrderResponse;
 import com.example.supervision_java.models.ShowOrder;
 import com.example.supervision_java.viewmodels.OrderViewModel;
 import com.example.supervision_java.views.NavigationActivity;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class OrderDetailActivity extends AppCompatActivity {
 
@@ -49,7 +53,7 @@ public class OrderDetailActivity extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setTitle("Detil Transaksi");
 
-        actions = new String[]{"Tambah Menu", "Hapus Menu"};
+        actions = new String[]{"Ubah Menu", "Tambah Menu", "Hapus Menu"};
         intent = getIntent();
         context = getBaseContext();
         transactionNumber = findViewById(R.id.transactionNumber);
@@ -89,16 +93,22 @@ public class OrderDetailActivity extends AppCompatActivity {
             public void onClick(View view) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(OrderDetailActivity.this);
                 builder.setItems(actions, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                switch (i) {
-                                    case 0:
-                                        Toast.makeText(OrderDetailActivity.this, "Ini maklo", Toast.LENGTH_SHORT).show();
-                                    case 1:
-                                        Toast.makeText(OrderDetailActivity.this, "Bukan maklo", Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        });
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        switch (i) {
+                            case 0:
+                                orderViewModel.updateOrder("Bearer " + MainActivity.user.getToken(), intent.getExtras().get("order_id").toString(), "update", 2, 5);
+                                break;
+                            case 1:
+                                orderViewModel.updateOrder("Bearer " + MainActivity.user.getToken(), intent.getExtras().get("order_id").toString(), "add", 2, 1);
+                                break;
+                            case 2:
+                                orderViewModel.updateOrder("Bearer " + MainActivity.user.getToken(), intent.getExtras().get("order_id").toString(), "remove", 2, 0);
+                                break;
+                        }
+                        orderViewModel.getUpdateOrderDetail().observe(OrderDetailActivity.this, updateOrder);
+                    }
+                });
 
                 AlertDialog alertDialog = builder.create();
                 alertDialog.show();
@@ -144,6 +154,15 @@ public class OrderDetailActivity extends AppCompatActivity {
                 Intent intent = new Intent(OrderDetailActivity.this, NavigationActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
+            }
+        }
+    };
+
+    private Observer<EditOrderResponse> updateOrder = new Observer<EditOrderResponse>() {
+        @Override
+        public void onChanged(EditOrderResponse editOrderResponse) {
+            if (editOrderResponse.getStatus_code() == 200) {
+                Toast.makeText(OrderDetailActivity.this, editOrderResponse.getMessage(), Toast.LENGTH_SHORT).show();
             }
         }
     };
