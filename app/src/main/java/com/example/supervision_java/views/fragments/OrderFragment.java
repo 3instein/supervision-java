@@ -67,8 +67,6 @@ public class OrderFragment extends Fragment {
         NavigationActivity.actionBar.setTitle("Transaksi Berlangsung");
         orderFragmentRV = view.findViewById(R.id.orderFragmentRV);
         orderViewModel = new ViewModelProvider(this).get(OrderViewModel.class);
-        orderViewModel.getAllOrders("Bearer " + MainActivity.user.getToken());
-        orderViewModel.getAllOrdersDetail().observe(getViewLifecycleOwner(), showAllOrders);
 
         return view;
     }
@@ -77,20 +75,21 @@ public class OrderFragment extends Fragment {
         @Override
         public void onChanged(List<Order.Orders> orders) {
             orderFragmentRV.setLayoutManager(new LinearLayoutManager(context));
-            if (!orders.isEmpty()) {
-                adapter.setOrdersList(orders);
-            }
-
+            adapter.setOrdersList(orders);
             orderFragmentRV.setAdapter(adapter);
-            adapter.notifyDataSetChanged();
         }
     };
 
     @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        if (OrderAdapter.ordersList != null) {
-            OrderAdapter.ordersList.clear();
-        }
+    public void onPause() {
+        super.onPause();
+        OrderAdapter.ordersList.clear();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        orderViewModel.getAllOrders("Bearer " + MainActivity.user.getToken());
+        orderViewModel.getAllOrdersDetail().observe(getViewLifecycleOwner(), showAllOrders);
     }
 }

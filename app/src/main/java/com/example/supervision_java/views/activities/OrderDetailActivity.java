@@ -99,7 +99,9 @@ public class OrderDetailActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialogInterface, int i) {
                         switch (i) {
                             case 0:
-                                orderViewModel.updateOrder("Bearer " + MainActivity.user.getToken(), intent.getExtras().get("order_id").toString(), "update", 2, 5);
+                                Intent intentEditMenu = new Intent(context, EditMenuActivity.class);
+                                intentEditMenu.putExtra("order_id", intent.getExtras().get("order_id").toString());
+                                startActivity(intentEditMenu);
                                 break;
                             case 1:
                                 Intent intentAddMenu = new Intent(context, AddMenuActivity.class);
