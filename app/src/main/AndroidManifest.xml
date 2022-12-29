@@ -12,6 +12,13 @@
         android:theme="@style/Theme.Supervisionjava"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".views.activities.EditMenuActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".views.activities.DeleteMenuActivity"
             android:exported="false">
             <meta-data
