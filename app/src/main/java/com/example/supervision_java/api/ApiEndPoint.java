@@ -72,7 +72,7 @@ public interface ApiEndPoint {
             @Path(value = "transaction_id", encoded = true) String transactionId
     );
 
-    @GET("menus")
+    @GET("menus-api")
     Call<Menu> getAllMenus(
             @Header("Authorization") String token
     );
