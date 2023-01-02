@@ -77,16 +77,40 @@ public class OrderDetailActivity extends AppCompatActivity {
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                orderViewModel.confirmOrder("Bearer " + MainActivity.user.getToken(), intent.getExtras().get("order_id").toString());
-                orderViewModel.getConfirmOrderDetail().observe(OrderDetailActivity.this, confirmOrder);
+                AlertDialog.Builder builder = new AlertDialog.Builder(OrderDetailActivity.this);
+                builder.setTitle("Konfirmasi pesanan");
+                builder.setMessage("Apakah anda yakin ingin mengonfirmasi pesanan #" + intent.getExtras().get("order_id").toString() + "?");
+                builder.setNegativeButton("Tidak", (DialogInterface.OnClickListener) (dialog, which) -> {
+                    dialog.cancel();
+                });
+
+                builder.setPositiveButton("Ya", (DialogInterface.OnClickListener) (dialog, which) -> {
+                    orderViewModel.confirmOrder("Bearer " + MainActivity.user.getToken(), intent.getExtras().get("order_id").toString());
+                    orderViewModel.getConfirmOrderDetail().observe(OrderDetailActivity.this, confirmOrder);
+                });
+
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
             }
         });
 
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                orderViewModel.cancelOrder("Bearer " + MainActivity.user.getToken(), intent.getExtras().get("order_id").toString());
-                orderViewModel.getCancelOrderDetail().observe(OrderDetailActivity.this, cancelOrder);
+                AlertDialog.Builder builder = new AlertDialog.Builder(OrderDetailActivity.this);
+                builder.setTitle("Batalkan pesanan");
+                builder.setMessage("Apakah anda yakin ingin membatalkan pesanan #" + intent.getExtras().get("order_id").toString() + "?");
+                builder.setNegativeButton("Tidak", (DialogInterface.OnClickListener) (dialog, which) -> {
+                    dialog.cancel();
+                });
+
+                builder.setPositiveButton("Ya", (DialogInterface.OnClickListener) (dialog, which) -> {
+                    orderViewModel.cancelOrder("Bearer " + MainActivity.user.getToken(), intent.getExtras().get("order_id").toString());
+                    orderViewModel.getCancelOrderDetail().observe(OrderDetailActivity.this, cancelOrder);
+                });
+
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
             }
         });
 
@@ -145,7 +169,7 @@ public class OrderDetailActivity extends AppCompatActivity {
         @Override
         public void onChanged(ConfirmOrder confirmOrder) {
             if (confirmOrder.getStatus_code() == 200) {
-                Toast.makeText(OrderDetailActivity.this, "Confirmed order id: " + intent.getExtras().get("order_id").toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(OrderDetailActivity.this, "Pesanan telah dikonfirmasi : #" + intent.getExtras().get("order_id").toString(), Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(OrderDetailActivity.this, NavigationActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
@@ -157,7 +181,7 @@ public class OrderDetailActivity extends AppCompatActivity {
         @Override
         public void onChanged(CancelOrder cancelOrder) {
             if (cancelOrder.getStatus_code() == 200) {
-                Toast.makeText(OrderDetailActivity.this, "Cancelled order id: " + intent.getExtras().get("order_id").toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(OrderDetailActivity.this, "Pesanan telah dibatalkan: #" + intent.getExtras().get("order_id").toString(), Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(OrderDetailActivity.this, NavigationActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);

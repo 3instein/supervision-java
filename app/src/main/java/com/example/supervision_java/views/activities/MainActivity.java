@@ -47,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
                 String username = loginEmailInput.getEditText().getText().toString();
                 String password = loginPasswordInput.getEditText().getText().toString();
                 if (!username.isEmpty() && !password.isEmpty()) {
+                    loginEmailInput.setErrorEnabled(false);
+                    loginPasswordInput.setErrorEnabled(false);
                     viewModel.authenticate(username, password);
                     viewModel.getAuthenticateDetails().observe(MainActivity.this, new Observer<LoginResponse>() {
                         @Override
@@ -58,13 +60,27 @@ public class MainActivity extends AppCompatActivity {
                                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                     startActivity(intent);
                                 } else {
-                                    Toast.makeText(context, "Cannot log in. Wrong credentials!", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(context, "Login gagal. Kredensial tidak valid!", Toast.LENGTH_SHORT).show();
                                 }
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }
                         }
                     });
+                } else {
+                    if (username.isEmpty()) {
+                        loginEmailInput.setErrorEnabled(true);
+                        loginEmailInput.setError("Username tidak boleh kosong");
+                    } else {
+                        loginEmailInput.setErrorEnabled(false);
+                    }
+
+                    if (password.isEmpty()) {
+                        loginPasswordInput.setErrorEnabled(true);
+                        loginPasswordInput.setError("Password tidak boleh kosong");
+                    } else {
+                        loginPasswordInput.setErrorEnabled(false);
+                    }
                 }
             }
         });
